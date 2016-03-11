@@ -1,0 +1,160 @@
+@import url(http://fonts.googleapis.com/css?family=Homenaje);
+
+html, body{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background: #B9090B;
+    font-family: 'Homenaje';
+}
+.flex{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+h1{
+    font-weight: normal;
+    color: #fff;
+    display: block;
+    text-transform: uppercase;
+    font-size: 120px; /* old */
+    letter-spacing: .5rem;
+    -webkit-text-stroke: 2px #000;
+    text-shadow:
+            1px 1px #000,
+            2px 2px #000,
+            3px 3px #000,
+            4px 4px #000,
+            5px 5px #000,
+            6px 6px #000,
+            7px 7px #000,
+            8px 8px #000,
+            9px 9px #000,
+            10px 10px #000;
+&:before,
+&:after{
+     display: inline-block;
+     font-size: 122px;
+     position: relative;
+     top: 2px;
+ }
+&:before{
+     content: "Net";
+     transform: skew(0,-1deg) rotate(.5deg);
+ }
+&:after{
+     content: "lix";
+     transform: skew(0,1deg) rotate(-.5deg);
+ }
+}
+p;
+
+body {
+    margin: 100px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+   a {
+       display: inline-block;
+       flex: 0 0 1;
+       margin: 0 50px;
+       line-height: 0;
+
+
+img {
+    transition: opacity .2s ease-in-out;
+    height: "233px";
+    width: "166px";
+}
+
+&::before {
+     width: 60px;
+     height: 60px;
+     border: 6px solid rgba(255,255,255,.8);
+     border-radius: 100%;
+     position: absolute;
+     z-index: 10;
+     left: 50%;
+     top: 50%;
+     margin-left: -33px;
+     margin-top: -33px;
+
+ }
+
+&::after {
+     width: 0;
+     height: 0;
+     border-radius: 3px;
+     border: 10px solid transparent;
+     border-left-width: 15px;
+     border-left-color: #d00;
+     position: absolute;
+     left: 0;
+     top: 0;
+     right: 0;
+     bottom: 0;
+     margin: auto;
+     z-index: 11;
+     transform: translateX(10px) translateY(2px);
+ }
+}
+
+
+
+a:hover {
+    position: relative;
+
+img {
+    opacity: .5;
+}
+
+&::before,
+&::after {
+     content: '';
+ }
+}
+
+
+
+
+   .about {
+       position: fixed;
+       bottom: 0;
+       left: 50%;
+       width: 600px;
+       margin-left: -300px;
+       text-align: center;
+       padding: 20px;
+
+h1 {
+    color: #d00;
+    text-transform: uppercase;
+    text-shadow: 0 1px 1px #222;
+    font-size: 20px;
+}
+p {
+    font-size: 15px;
+}
+}
+#row1 {
+    background-color: #222222;
+    height: 350px;
+}
+#row1 > a > img {
+    margin-left: 50px;
+}
+#row2 > a > img{
+    margin-left: 50px;
+}
+#comedy {
+    background-color: #222222;
+    height: 350px;
+}
+#comedy > a > img {
+    margin-left: 50px;
+}
