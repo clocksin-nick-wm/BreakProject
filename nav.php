@@ -11,7 +11,7 @@
                 <a class="mdl-navigation__link" href="products.php">Products</a>
                 <a class="mdl-navigation__link" href="subscribe.html">Subscribe</a>
                 <a class="mdl-navigation__link" href="order.php">Order</a>
-                <a class="mdl-navigation__link" href="login.html">Login/Register</a>
+                <a class="mdl-navigation__link" href="login.php">Submit Idea</a>
             </nav>
         </div>
     </header>
