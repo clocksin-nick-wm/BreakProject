@@ -1,28 +1,48 @@
-<!DOCTYPE html>
-    <html>
-<head>
-    <title>Eagle Ink Submission</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.blue-yellow.min.css" />
-    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
-</head>
-<body>
-<style>
-    form > input{
-        margin-top: 100px;
-    }
-</style>
 <?php
-include('nav.php');
-include('connect.php');
+include_once('nav.php');
+include_once('appvars.php');
+include_once('connect.php');
+$name = $_POST['name'];
+$product = $_POST['product'];
+$screenshot = $_FILES['screenshot']['name'];
+$screenshot_size = $_FILES['screenshot']['size'];
+$screenshot_type = $_FILES['screenshot']['type'];
+if (!empty($name) && !empty($score) && !empty($screenshot)) {
+if ((($screenshot_type == 'image/gif') || ($screenshot_type == 'image/jpeg') || ($screenshot_type == 'image/pjpeg') || ($screenshot_type == 'image/png')) &&
+($screenshot_size > 0) && ($screenshot_size <= GW_MAXFILESIZE)) {
+if ($_FILES['file']['error'] == 0) {
+
+    $target = GW_UPLOADPATH . $screenshot;
+
+    if (move_uploaded_file($_FILES['screenshot']['tmp_name'], $target)) {
+        if (!empty($product) && !empty($name)) {
+            $query = "INSERT INTO products VALUES (0, :name, :product, :product_img)";
+            $stmt = $dbh->prepare($query);
+            $stmt->execute(
+                array(
+                    'product' => $product,
+                    'product_img' => $screenshot,
+                    'name' => $name
+                )
+            );
+            echo '<p>Thank you ' . $name . ' for submitting ' . $product . ' </p>';
+            echo '<p> Submit more content to be featured on our products page.';// Clear the score data to clear the form
+            $name = "";
+            $product = "";
+
+        } else {
+            echo '<p class="error">Sorry, there was a problem uploading your screen shot image.</p>';
+        }
+    } else {
+        echo '<p class="error">The screen shot must be a GIF, JPEG, or PNG image file no ' .
+            'greater than ' . (GW_MAXFILESIZE / 1024) . ' KB in size.</p>';
+    }
+}
+    // Try to delete the temporary screen shot image file
+    @unlink($_FILES['screenshot']['tmp_name']);
+}
+else {
+    echo '<p class="error">Please enter all of the information to add your high score.</p>';
+}
+}
  ?>
-<form action="submit.php" method="post">
-    <label for="name">Name</label>
-    <input type="text" name="name" id="name">
-    <label for="product">Product Name</label><br>
-    <input type="text" name="product">
-    <input id="screenshot" type="file">
-    <button type="submit" id="submit">Submit</button>
-</form>
-</body>
-</html>

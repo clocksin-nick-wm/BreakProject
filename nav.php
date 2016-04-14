@@ -9,9 +9,9 @@
             <!-- Navigation. We hide it in small screens. -->
             <nav class="mdl-navigation mdl-layout--large-screen-only">
                 <a class="mdl-navigation__link" href="products.php">Products</a>
-                <a class="mdl-navigation__link" href="subscribe.html">Subscribe</a>
+                <a class="mdl-navigation__link" href="Subscribe/subscribe.html">Subscribe</a>
                 <a class="mdl-navigation__link" href="order.php">Order</a>
-                <a class="mdl-navigation__link" href="login.php">Submit Idea</a>
+                <a class="mdl-navigation__link" href="ideas.html">Submit Idea</a>
             </nav>
         </div>
     </header>
