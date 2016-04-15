@@ -1,5 +1,4 @@
 <?php
-include_once('nav.php');
 include_once('appvars.php');
 include_once('connect.php');
 $name = $_POST['name'];
@@ -7,6 +6,7 @@ $product = $_POST['product'];
 $screenshot = $_FILES['screenshot']['name'];
 $screenshot_size = $_FILES['screenshot']['size'];
 $screenshot_type = $_FILES['screenshot']['type'];
+$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 if (!empty($name) && !empty($score) && !empty($screenshot)) {
 if ((($screenshot_type == 'image/gif') || ($screenshot_type == 'image/jpeg') || ($screenshot_type == 'image/pjpeg') || ($screenshot_type == 'image/png')) &&
 ($screenshot_size > 0) && ($screenshot_size <= GW_MAXFILESIZE)) {
@@ -18,15 +18,19 @@ if ($_FILES['file']['error'] == 0) {
         if (!empty($product) && !empty($name)) {
             $query = "INSERT INTO products VALUES (0, :name, :product, :product_img)";
             $stmt = $dbh->prepare($query);
-            $stmt->execute(
+            $test = $stmt->execute(
                 array(
                     'product' => $product,
                     'product_img' => $screenshot,
                     'name' => $name
                 )
+
             );
-            echo '<p>Thank you ' . $name . ' for submitting ' . $product . ' </p>';
-            echo '<p> Submit more content to be featured on our products page.';// Clear the score data to clear the form
+
+
+            var_dump($test);
+            echo '<p>Thank you ' . $name . ' for submitting ' . $product . '</p>';
+            echo '<p> Submit more content to be featured on our products page.</p>';// Clear the score data to clear the form
             $name = "";
             $product = "";
 
